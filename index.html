@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yusuf Sayılgan | Edge AI Engineer</title>
+<meta name="description" content="Yusuf Sayılgan — Bilgisayar Mühendisliği Öğrencisi & Edge AI Engineer. Gömülü sistemler, yapay zeka ve savunma teknolojileri portfolyosu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: { ink: '#070D18', panel: '#0D1626', edge: '#1C2A42', mute: '#8A9BB5', neon: '#35F2A1', ice: '#4CC9FF' },
+    fontFamily: { sans: ['Sora', 'system-ui', 'sans-serif'], mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'] }
+  } }
+}
+</script>
+<style>
+  body { background: #070D18; }
+  .grid-bg { background-image: linear-gradient(#1C2A4233 1px, transparent 1px), linear-gradient(90deg, #1C2A4233 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse at 70% 20%, #000 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at 70% 20%, #000 20%, transparent 70%); }
+  .card { transition: border-color .2s, transform .2s; }
+  .card:hover { border-color: #35F2A1aa; }
+  [role=tab][aria-selected=true] { color: #fff; border-color: #35F2A1; }
+  .cursor::after { content: '▋'; color: #35F2A1; animation: blink 1s steps(2) infinite; margin-left: 2px; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .seg { transform-origin: left; animation: grow .9s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes grow { from { transform: scaleX(0); } }
+  :focus-visible { outline: 2px solid #35F2A1; outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { .seg, .cursor::after { animation: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body class="font-sans text-slate-200 antialiased selection:bg-neon selection:text-ink">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 border-b border-edge/70 bg-ink/80 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5" aria-label="Ana menü">
+    <a href="#top" class="font-mono text-sm text-neon">ys@edge:~$</a>
+    <button id="menuBtn" class="md:hidden rounded border border-edge px-3 py-1.5 text-sm" aria-expanded="false" aria-controls="menu">Menü</button>
+    <ul id="menu" class="hidden absolute left-0 right-0 top-full flex-col gap-1 border-b border-edge bg-ink px-5 py-4 text-sm md:static md:flex md:flex-row md:gap-7 md:border-0 md:bg-transparent md:p-0">
+      <li><a class="block py-1 text-mute hover:text-white" href="#yetkinlikler">Yetkinlikler</a></li>
+      <li><a class="block py-1 text-mute hover:text-white" href="#projeler" data-tab="projeler">Projeler</a></li>
+      <li><a class="block py-1 text-mute hover:text-white" href="#projeler" data-tab="sertifikalar">Sertifikalar</a></li>
+      <li><a class="block py-1 text-mute hover:text-white" href="#liderlik">Liderlik</a></li>
+      <li><a class="block py-1 text-mute hover:text-white" href="#iletisim">İletişim</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="relative overflow-hidden">
+  <div class="grid-bg absolute inset-0" aria-hidden="true"></div>
+  <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:py-28 lg:grid-cols-[1.15fr_.85fr]">
+    <div>
+      <p class="font-mono text-sm text-ice">Bilgisayar Mühendisliği Öğrencisi &amp; Edge AI Engineer</p>
+      <h1 class="mt-4 text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl">Yusuf<br>Sayılgan</h1>
+      <p class="mt-7 max-w-xl leading-relaxed text-slate-300">Düşük seviyeli sistemler, gömülü yazılım mimarileri ve yapay zeka uygulamaları üzerine çalışan; milli teknoloji hamlesi vizyonuyla hareket eden bir bilgisayar mühendisliği 3. sınıf öğrencisi. <span class="text-white">Two Red Eyes</span> yazılım ekibinin kurucu ortağı.</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#projeler" class="rounded-md bg-neon px-5 py-2.5 text-sm font-semibold text-ink hover:brightness-110">Projeleri incele</a>
+        <a href="#iletisim" class="rounded-md border border-edge px-5 py-2.5 text-sm font-semibold text-white hover:border-neon">İletişime geç</a>
+      </div>
+    </div>
+
+    <!-- Memory map: Memory Segmentation temasına referans -->
+    <div class="rounded-lg border border-edge bg-panel/90 p-5 font-mono text-xs shadow-[0_0_60px_-20px_#35F2A155]" aria-label="Bellek haritası görseli">
+      <div class="mb-4 flex items-center gap-1.5" aria-hidden="true"><i class="h-2.5 w-2.5 rounded-full bg-edge"></i><i class="h-2.5 w-2.5 rounded-full bg-edge"></i><i class="h-2.5 w-2.5 rounded-full bg-neon"></i><span class="ml-3 text-mute">firmware.map</span></div>
+      <div class="space-y-2">
+        <div class="seg flex items-center justify-between rounded border border-neon/60 bg-neon/10 px-3 py-3" style="animation-delay:.1s"><span class="text-neon">.text</span><span class="text-mute">0x0800_0000</span></div>
+        <div class="seg flex items-center justify-between rounded border border-ice/60 bg-ice/10 px-3 py-2.5" style="animation-delay:.25s"><span class="text-ice">.rodata</span><span class="text-mute">0x0802_0000</span></div>
+        <div class="seg flex items-center justify-between rounded border border-edge bg-white/5 px-3 py-2" style="animation-delay:.4s"><span>.data</span><span class="text-mute">0x2000_0000</span></div>
+        <div class="seg flex items-center justify-between rounded border border-edge bg-white/5 px-3 py-4" style="animation-delay:.55s"><span>.bss</span><span class="text-mute">0x2000_0400</span></div>
+        <div class="seg flex items-center justify-between rounded border border-dashed border-edge px-3 py-5 text-mute" style="animation-delay:.7s"><span>heap ↓ &nbsp; ↑ stack</span><span>0x2002_0000</span></div>
+      </div>
+      <p class="cursor mt-5 text-slate-300">boot: tüm çevre birimleri hazır</p>
+    </div>
+  </div>
+</section>
+
+<!-- YETKİNLİKLER -->
+<section id="yetkinlikler" class="mx-auto max-w-6xl px-5 py-20">
+  <h2 class="text-3xl font-bold text-white">Teknik yetkinlikler</h2>
+  <p class="mt-2 text-mute">Mikrodenetleyiciden yapay zeka modeline, katman katman.</p>
+  <div id="skills" class="mt-10 grid gap-5 md:grid-cols-2"></div>
+</section>
+
+<!-- PROJELER -->
+<section id="projeler" class="border-y border-edge/70 bg-panel/40">
+  <div class="mx-auto max-w-6xl px-5 py-20">
+    <div role="tablist" aria-label="Projeler ve sertifikalar" class="flex gap-1 border-b border-edge">
+      <button role="tab" id="tab-projeler" aria-controls="panel-projeler" aria-selected="true" class="-mb-px border-b-2 border-transparent px-5 py-3 text-lg font-semibold text-mute hover:text-white">Projeler</button>
+      <button role="tab" id="tab-sertifikalar" aria-controls="panel-sertifikalar" aria-selected="false" tabindex="-1" class="-mb-px border-b-2 border-transparent px-5 py-3 text-lg font-semibold text-mute hover:text-white">Sertifikalar</button>
+    </div>
+    <div id="panel-projeler" role="tabpanel" aria-labelledby="tab-projeler">
+    <p class="mt-8 text-mute">Savunma, görüntü işleme ve yazılım mimarisi alanında geliştirdiklerim.</p>
+    <div id="projects" class="mt-10 grid gap-5 lg:grid-cols-2"></div>
+
+    <h3 class="mt-14 text-xl font-semibold text-white">Ek projeler ve modüller</h3>
+    <p class="mt-1 text-sm text-mute">Daha fazlası <a class="text-neon underline underline-offset-4" href="https://github.com/cyberperfo" target="_blank" rel="noopener">GitHub profilimde</a>.</p>
+    <div id="extras" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
+    </div>
+    <div id="panel-sertifikalar" role="tabpanel" aria-labelledby="tab-sertifikalar" hidden>
+      <p class="mt-8 text-mute">Tamamladığım eğitimler. Dosyalar <code class="font-mono text-sm text-ice">certs/</code> klasöründen açılır.</p>
+      <div id="certs" class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LİDERLİK -->
+<section id="liderlik" class="mx-auto max-w-6xl px-5 py-20">
+  <h2 class="text-3xl font-bold text-white">Liderlik &amp; topluluk deneyimleri</h2>
+  <div id="lead" class="mt-10 grid gap-5 md:grid-cols-2"></div>
+</section>
+
+<!-- İLETİŞİM -->
+<section id="iletisim" class="border-t border-edge/70 bg-panel/40">
+  <div class="mx-auto max-w-6xl px-5 py-20">
+    <h2 class="text-3xl font-bold text-white">İletişim</h2>
+    <p class="mt-2 max-w-lg text-mute">Gömülü sistemler, Edge AI veya takım çalışması için yazabilirsiniz.</p>
+    <dl class="mt-10 grid gap-4 sm:grid-cols-2">
+      <a class="card block rounded-lg border border-edge bg-ink p-5" href="mailto:yusuf.sayilgan@outlook.com"><dt class="text-sm text-mute">E-posta</dt><dd class="mt-1 break-all font-mono text-sm text-neon">yusuf.sayilgan@outlook.com</dd></a>
+      <a class="card block rounded-lg border border-edge bg-ink p-5" href="https://github.com/cyberperfo" target="_blank" rel="noopener"><dt class="text-sm text-mute">GitHub</dt><dd class="mt-1 font-mono text-sm text-neon">github.com/cyberperfo</dd></a>
+      <a class="card block rounded-lg border border-edge bg-ink p-5" href="https://www.linkedin.com/in/yusuf-say%C4%B1lgan-718153314" target="_blank" rel="noopener"><dt class="text-sm text-mute">LinkedIn</dt><dd class="mt-1 break-all font-mono text-sm text-neon">linkedin.com/in/yusuf-sayılgan-718153314</dd></a>
+      <div class="rounded-lg border border-edge bg-ink p-5"><dt class="text-sm text-mute">Konum</dt><dd class="mt-1 font-mono text-sm text-slate-200">Pendik / İstanbul</dd></div>
+    </dl>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-edge/70 px-5 py-6 text-center font-mono text-xs text-mute">© <span id="yr"></span> Yusuf Sayılgan</footer>
+
+<script>
+/* ---------- VERİ ---------- */
+const skills = [
+  { title: 'Programlama Dilleri', color: 'neon', items: ['C++', 'Python', 'Java', 'JavaScript', 'SQL'] },
+  { title: 'Gömülü Sistemler / MCU', color: 'ice', items: ['MCU Peripherals', 'Interrupts', 'Start-up Codes', 'Embedded Driver Development', 'Multi-threading', 'Memory Segmentation'] },
+  { title: 'Yapay Zeka / Görüntü İşleme', color: 'neon', items: ['PyTorch', 'TensorFlow', 'OpenCV', 'Scikit-learn', 'NumPy', 'Pandas', 'ResNet', 'DQN', 'Kalman Filtresi', 'KNN'] },
+  { title: 'Yazılım / Veritabanı', color: 'ice', items: ['OOP', 'Veri Yapıları ve Algoritmalar', 'Qt6', 'MERN Stack', 'REST API', 'Mikroservis', 'SQL (Normalizasyon, Sorgu Optimizasyonu)', 'HTML', 'CSS'] }
+];
+
+const projects = [
+  { name: 'LAOM 2.0', sub: 'Lazer Angajman ve Optimizasyon Modülü',
+    desc: 'Hedef tespiti ve takibi için geliştirilen masaüstü modül. Görüntü işleme hattı, hedef sınıflandırma ve hareket tahminini tek bir arayüzde birleştirir.',
+    arch: 'Qt6 arayüz katmanı → OpenCV görüntü işleme → KNN ile sınıflandırma → Kalman Filtresi ile hedef takibi ve tahmini.',
+    tech: ['C++', 'Qt6', 'OpenCV', 'KNN', 'Kalman Filtresi'],
+    links: [['GitHub', 'https://github.com/cyberperfo/LAOM_2.0']] },
+  { name: 'LAOM 3.0', sub: 'Lazer Angajman ve Optimizasyon Modülü, yeni sürüm',
+    desc: 'LAOM serisinin 2.0 sürümünün devamı olarak geliştirilen yeni nesil modül.',
+    arch: '', tech: [],
+    links: [['GitHub', 'https://github.com/cyberperfo/LAOM_3.0']] },
+  { name: 'Stratos', sub: 'AI Destekli Otonom Savunma Sanayii İstihbarat Bülteni',
+    desc: 'Savunma sanayii haberlerini toplayıp yapay zeka ile analiz eden ve otomatik olarak bülten üreten istihbarat sistemi.',
+    arch: 'Python tabanlı ajan servisi, Google Gemini LLM ile analiz; MERN arayüzü ve REST API ile servisler arası mikroservis iletişimi.',
+    tech: ['Python', 'MERN Stack', 'Google Gemini LLM', 'REST API', 'Mikroservis'],
+    links: [['GitHub', 'https://github.com/cyberperfo/stratos-agent']] },
+  { name: 'Derin Öğrenme ve Makine Öğrenmesi Uygulamaları', sub: 'Görüntü işleme ve pekiştirmeli öğrenme',
+    desc: 'Derin öğrenme modelleri ve klasik makine öğrenmesi yöntemleri üzerine uygulamalı çalışmalar; görüntü sınıflandırma ve pekiştirmeli öğrenme deneyleri.',
+    arch: 'PyTorch ile ResNet tabanlı görüntü sınıflandırma, DQN ile pekiştirmeli öğrenme, Scikit-learn ile klasik modeller.',
+    tech: ['Python', 'PyTorch', 'ResNet', 'DQN', 'Scikit-learn'],
+    links: [['Derin Öğrenme', 'https://github.com/cyberperfo/deep-learning'], ['Görüntü İşleme', 'https://github.com/cyberperfo/deep-learning-ile-goruntu-isleme']] },
+  { name: 'COVID-19 Veri Panosu', sub: 'REST API tabanlı veri paneli',
+    desc: 'Genel bir REST API üzerinden COVID-19 verilerini çekip işleyen ve kullanıcıya sunan Java uygulaması.',
+    arch: 'Nesne yönelimli tasarım; Java 11 HTTPClient ile API çağrıları, JSON ayrıştırma ve veri modeli sınıfları.',
+    tech: ['Java 11', 'HTTPClient', 'REST API', 'JSON', 'OOP'],
+    links: [['GitHub', 'https://github.com/cyberperfo/Covid-Dashboard']] }
+];
+
+const extras = [
+  ['Hastane Veritabanı Projesi', 'Veritabanı tasarımı', 'https://github.com/cyberperfo/HastaneVeriTaban-Projesi'],
+  ['Defense Monitor', 'Savunma odaklı izleme', 'https://github.com/cyberperfo/defense-monitor'],
+  ['Randevu Sistemi 2.0', 'Randevu yönetimi', 'https://github.com/cyberperfo/Randevu-Sistemi2.0'],
+  ['Yusuf-Sui-2.0', 'Ek modül', 'https://github.com/cyberperfo/Yusuf-Sui-2.0']
+];
+
+const lead = [
+  { role: 'Kurucu Ortak', org: 'Two Red Eyes Yazılım Ekibi', text: 'Yazılım ekibini kurarak projelerin planlanması, geliştirilmesi ve teslimi süreçlerinde görev alıyor.' },
+  { role: 'Yönetim Kurulu Başkanı', org: 'Medeniyet Blockchain Kulübü', text: 'Kulübün yönetimini yürütüyor; blokzincir teknolojileri üzerine topluluk etkinlikleri ve eğitimleri organize ediyor.' }
+];
+
+/* ---------- BİLEŞENLER ---------- */
+const tag = (t, c = 'neon') => `<span class="rounded border border-edge bg-ink px-2.5 py-1 font-mono text-xs ${c === 'neon' ? 'text-neon' : 'text-ice'}">${t}</span>`;
+const chip = t => `<span class="rounded border border-edge bg-white/5 px-2 py-0.5 font-mono text-xs text-slate-300">${t}</span>`;
+
+const SkillCard = s => `
+  <article class="card rounded-lg border border-edge bg-panel p-6">
+    <h3 class="font-semibold text-white"><span class="mr-2 inline-block h-2 w-2 rounded-full bg-${s.color}"></span>${s.title}</h3>
+    <div class="mt-4 flex flex-wrap gap-2">${s.items.map(i => tag(i, s.color)).join('')}</div>
+  </article>`;
+
+const ProjectCard = p => `
+  <article class="card flex flex-col rounded-lg border border-edge bg-ink p-6">
+    <h3 class="text-xl font-semibold text-white">${p.name}</h3>
+    <p class="mt-1 text-sm text-ice">${p.sub}</p>
+    <p class="mt-4 text-sm leading-relaxed text-slate-300">${p.desc}</p>
+    ${p.arch ? `<p class="mt-3 border-l-2 border-neon/60 pl-3 text-sm leading-relaxed text-mute"><span class="text-slate-200">Mimari:</span> ${p.arch}</p>` : ''}
+    ${p.tech.length ? `<div class="mt-4 flex flex-wrap gap-2">${p.tech.map(chip).join('')}</div>` : ''}
+    <div class="mt-auto flex flex-wrap gap-3 pt-6">
+      ${p.links.map(([l, u]) => `<a href="${u}" target="_blank" rel="noopener" class="rounded-md border border-edge px-4 py-2 text-sm font-medium text-white hover:border-neon hover:text-neon">${p.links.length > 1 ? l : 'GitHub\'da incele'}</a>`).join('')}
+    </div>
+  </article>`;
+
+const ExtraCard = ([n, d, u]) => `
+  <a href="${u}" target="_blank" rel="noopener" class="card block rounded-lg border border-edge bg-ink p-5">
+    <h4 class="font-semibold text-white">${n}</h4>
+    <p class="mt-1 text-sm text-mute">${d}</p>
+    <p class="mt-4 font-mono text-xs text-neon">github.com/cyberperfo</p>
+  </a>`;
+
+const LeadCard = l => `
+  <article class="card rounded-lg border border-edge bg-panel p-6">
+    <p class="font-mono text-sm text-neon">${l.role}</p>
+    <h3 class="mt-1 text-lg font-semibold text-white">${l.org}</h3>
+    <p class="mt-3 text-sm leading-relaxed text-slate-300">${l.text}</p>
+  </article>`;
+
+const render = (id, arr, fn) => document.getElementById(id).innerHTML = arr.map(fn).join('');
+render('skills', skills, SkillCard);
+render('projects', projects, ProjectCard);
+render('extras', extras, ExtraCard);
+render('lead', lead, LeadCard);
+
+/* Sertifikalar: dosya adları certs/ klasörüne göre. Eksik dosyalar (.pdf) için kendi dosyanı aynı adla ekle. */
+const certs = [
+  { title: 'Mastering Microcontroller and Embedded Driver Development', org: 'Udemy', date: 'Eyl 2026', id: 'UC-748a031c-52f9-46a1-a58a-4c5eaeec68dd', file: 'embedded-driver-udemy.png', img: true },
+  { title: 'Görüntü İşleme Pratikleri ve Derin Öğrenme ile', org: 'BTK Akademi', date: 'Ara 2025 - Ara 2035', id: '9XrtzLlNNk', file: 'goruntu-isleme-derin-ogrenme-btk.pdf' },
+  { title: 'HTML ile Web Geliştirme', org: 'BTK Akademi', date: 'Ara 2025 - Ara 2035', id: 'pKmhq7MygE', file: 'html-web-gelistirme-btk.jpg', img: true },
+  { title: 'C++ ile Programlamaya Giriş', org: 'BTK Akademi', date: 'Eki 2025 - Eki 2035', id: 'BozfxDyae7', file: 'cpp-programlamaya-giris-btk.pdf' },
+  { title: 'PyTorch ile Derin Öğrenme Algoritmaları', org: 'BTK Akademi', date: 'Ara 2025 - Ara 2035', id: 'BozfxGyl8d', file: 'pytorch-derin-ogrenme-btk.jpg', img: true },
+  { title: 'Savunma Sanayii 101 Eğitim Sertifikası', org: 'Savunma Sanayii Akademi', date: 'Haz 2025', id: 'UN_041477105104205649', file: 'savunma-sanayii-101.jpg' },
+  { title: 'Python ile Makine Öğrenmesi', org: 'BTK Akademi', date: 'Nis 2025 - Nis 2035', id: 'pKmhK6gLL6', file: 'python-makine-ogrenmesi-btk.jpg', img: true },
+  { title: 'Python Programlama Dili', org: 'BTK Akademi', date: 'Nis 2025 - Nis 2035', id: 'lK1h7omj8', file: 'python-programlama-btk.jpg', img: true },
+  { title: 'Certified Ethical Hacker', org: 'Udemy', date: 'Nis 2025 - Nis 2035', id: 'UC-e79fa7a8-6041-49e7-8958-5fdcc22bb5cb', file: 'certified-ethical-hacker-udemy.pdf' },
+  { title: 'Java Programming Masterclass', org: 'Udemy', date: 'Şub 2025 - Şub 2035', id: 'UC-850779ad-b13a-44d5-8e5d-b8742046260b', file: 'java-masterclass-udemy.png', img: true },
+  { title: 'C Programming Fundamentals', org: 'BTK Akademi', date: 'Mar 2025 - Mar 2035', id: 'pKmhKWZNoa', file: 'c-programlama-btk.jpg', img: true }
+];
+
+const CertCard = c => `
+  <article class="card flex flex-col overflow-hidden rounded-lg border border-edge bg-ink">
+    ${c.img ? `<a href="certs/${c.file}" target="_blank" rel="noopener" aria-label="${c.title} sertifikasını görüntüle"><img src="certs/${c.file}" alt="${c.title} sertifikası" loading="lazy" class="aspect-[4/3] w-full border-b border-edge bg-white object-cover object-top"></a>` : ''}
+    <div class="flex flex-1 flex-col p-5">
+      <p class="font-mono text-xs text-ice">${c.org}</p>
+      <h3 class="mt-1 font-semibold leading-snug text-white">${c.title}</h3>
+      <p class="mt-2 text-sm text-mute">${c.date}</p>
+      <p class="mt-3 break-all font-mono text-xs text-slate-400"><span class="text-mute">Kimlik:</span> ${c.id}</p>
+      <div class="mt-auto flex gap-3 pt-5">
+        <a href="certs/${c.file}" target="_blank" rel="noopener" class="rounded-md border border-edge px-4 py-2 text-sm font-medium text-white hover:border-neon hover:text-neon">Görüntüle</a>
+        <a href="certs/${c.file}" download class="rounded-md border border-edge px-4 py-2 text-sm font-medium text-white hover:border-neon hover:text-neon">İndir</a>
+      </div>
+    </div>
+  </article>`;
+render('certs', certs, CertCard);
+
+/* ---------- ETKİLEŞİM ---------- */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* Sekmeler */
+const tabs = [...document.querySelectorAll('[role=tab]')];
+const setTab = n => tabs.forEach(t => {
+  const on = t.id === 'tab-' + n;
+  t.setAttribute('aria-selected', on);
+  t.tabIndex = on ? 0 : -1;
+  document.getElementById('panel-' + t.id.slice(4)).hidden = !on;
+});
+tabs.forEach(t => {
+  t.addEventListener('click', () => setTab(t.id.slice(4)));
+  t.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const o = tabs[(tabs.indexOf(t) + 1) % tabs.length];
+    o.focus(); setTab(o.id.slice(4));
+  });
+});
+document.querySelectorAll('[data-tab]').forEach(a => a.addEventListener('click', () => setTab(a.dataset.tab)));
+setTab(location.hash === '#sertifikalar' ? 'sertifikalar' : 'projeler');
+const btn = document.getElementById('menuBtn'), menu = document.getElementById('menu');
+btn.addEventListener('click', () => {
+  const open = menu.classList.toggle('hidden') === false;
+  menu.classList.toggle('flex', open);
+  btn.setAttribute('aria-expanded', open);
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  if (window.innerWidth < 768) { menu.classList.add('hidden'); menu.classList.remove('flex'); btn.setAttribute('aria-expanded', false); }
+}));
+</script>
+</body>
+</html>
