@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,111 +10,41 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <script>
-tailwind.config = {
-  theme: { extend: {
-    colors: { ink: '#070D18', panel: '#0D1626', edge: '#1C2A42', mute: '#8A9BB5', neon: '#35F2A1', ice: '#4CC9FF' },
-    fontFamily: { sans: ['Sora', 'system-ui', 'sans-serif'], mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'] }
-  } }
-}
+tailwind.config = { theme: { extend: {
+  colors: { ink: '#070D18', panel: '#0D1626', edge: '#1C2A42', mute: '#8A9BB5', neon: '#35F2A1', ice: '#4CC9FF' },
+  fontFamily: { sans: ['Sora', 'system-ui', 'sans-serif'], mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'] }
+} } }
 </script>
 <style>
   body { background: #070D18; }
-  .grid-bg { background-image: linear-gradient(#1C2A4233 1px, transparent 1px), linear-gradient(90deg, #1C2A4233 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse at 70% 20%, #000 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at 70% 20%, #000 20%, transparent 70%); }
-  .card { transition: border-color .2s, transform .2s; }
+  .grid-bg { background-image: linear-gradient(#1C2A4233 1px, transparent 1px), linear-gradient(90deg, #1C2A4233 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(ellipse at 80% 0%, #000 10%, transparent 65%); mask-image: radial-gradient(ellipse at 80% 0%, #000 10%, transparent 65%); }
+  .card { transition: border-color .2s; }
   .card:hover { border-color: #35F2A1aa; }
-  [role=tab][aria-selected=true] { color: #fff; border-color: #35F2A1; }
-  .cursor::after { content: '▋'; color: #35F2A1; animation: blink 1s steps(2) infinite; margin-left: 2px; }
-  @keyframes blink { 50% { opacity: 0; } }
-  .seg { transform-origin: left; animation: grow .9s cubic-bezier(.2,.8,.2,1) both; }
-  @keyframes grow { from { transform: scaleX(0); } }
+  .page { animation: in .35s ease both; }
+  @keyframes in { from { opacity: 0; transform: translateY(8px); } }
+  [aria-current=page] { color: #fff !important; box-shadow: inset 0 -2px #35F2A1; }
   :focus-visible { outline: 2px solid #35F2A1; outline-offset: 3px; border-radius: 4px; }
-  @media (prefers-reduced-motion: reduce) { .seg, .cursor::after { animation: none; } html { scroll-behavior: auto; } }
+  @media (prefers-reduced-motion: reduce) { .page { animation: none; } }
 </style>
 </head>
 <body class="font-sans text-slate-200 antialiased selection:bg-neon selection:text-ink">
 
-<!-- NAV -->
-<header class="sticky top-0 z-50 border-b border-edge/70 bg-ink/80 backdrop-blur">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5" aria-label="Ana menü">
-    <a href="#top" class="font-mono text-sm text-neon">ys@edge:~$</a>
-    <button id="menuBtn" class="md:hidden rounded border border-edge px-3 py-1.5 text-sm" aria-expanded="false" aria-controls="menu">Menü</button>
-    <ul id="menu" class="hidden absolute left-0 right-0 top-full flex-col gap-1 border-b border-edge bg-ink px-5 py-4 text-sm md:static md:flex md:flex-row md:gap-7 md:border-0 md:bg-transparent md:p-0">
-      <li><a class="block py-1 text-mute hover:text-white" href="#yetkinlikler">Yetkinlikler</a></li>
-      <li><a class="block py-1 text-mute hover:text-white" href="#projeler" data-tab="projeler">Projeler</a></li>
-      <li><a class="block py-1 text-mute hover:text-white" href="#projeler" data-tab="sertifikalar">Sertifikalar</a></li>
-      <li><a class="block py-1 text-mute hover:text-white" href="#liderlik">Liderlik</a></li>
-      <li><a class="block py-1 text-mute hover:text-white" href="#iletisim">İletişim</a></li>
+<header class="sticky top-0 z-50 border-b border-edge/70 bg-ink/85 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-5" aria-label="Ana menü">
+    <a href="#/" class="py-3.5 font-mono text-sm text-neon">yusuf.sayilgan</a>
+    <button id="menuBtn" class="rounded border border-edge px-3 py-1.5 text-sm md:hidden" aria-expanded="false" aria-controls="menu">Menü</button>
+    <ul id="menu" class="absolute left-0 right-0 top-full hidden flex-col border-b border-edge bg-ink px-5 py-3 text-sm md:static md:flex md:flex-row md:gap-8 md:border-0 md:bg-transparent md:p-0">
+      <li><a data-nav="" class="block py-3.5 text-mute hover:text-white" href="#/">Ana sayfa</a></li>
+      <li><a data-nav="projects" class="block py-3.5 text-mute hover:text-white" href="#/projects">Projeler</a></li>
+      <li><a data-nav="certificates" class="block py-3.5 text-mute hover:text-white" href="#/certificates">Sertifikalar</a></li>
+      <li><a data-scroll="contact" class="block py-3.5 text-mute hover:text-white" href="#/">İletişim</a></li>
     </ul>
   </nav>
 </header>
 
-<main id="top">
-<!-- HERO -->
-<section class="relative overflow-hidden">
-  <div class="grid-bg absolute inset-0" aria-hidden="true"></div>
-  <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:py-28 lg:grid-cols-[1.15fr_.85fr]">
-    <div>
-      <p class="font-mono text-sm text-ice">Bilgisayar Mühendisliği Öğrencisi &amp; Edge AI Engineer</p>
-      <h1 class="mt-4 text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl">Yusuf<br>Sayılgan</h1>
-      <p class="mt-7 max-w-xl leading-relaxed text-slate-300">Düşük seviyeli sistemler, gömülü yazılım mimarileri ve yapay zeka uygulamaları üzerine çalışan; milli teknoloji hamlesi vizyonuyla hareket eden bir bilgisayar mühendisliği 3. sınıf öğrencisi. <span class="text-white">Two Red Eyes</span> yazılım ekibinin kurucu ortağı.</p>
-      <div class="mt-9 flex flex-wrap gap-3">
-        <a href="#projeler" class="rounded-md bg-neon px-5 py-2.5 text-sm font-semibold text-ink hover:brightness-110">Projeleri incele</a>
-        <a href="#iletisim" class="rounded-md border border-edge px-5 py-2.5 text-sm font-semibold text-white hover:border-neon">İletişime geç</a>
-      </div>
-    </div>
+<main id="app"></main>
 
-    <!-- Memory map: Memory Segmentation temasına referans -->
-    <div class="rounded-lg border border-edge bg-panel/90 p-5 font-mono text-xs shadow-[0_0_60px_-20px_#35F2A155]" aria-label="Bellek haritası görseli">
-      <div class="mb-4 flex items-center gap-1.5" aria-hidden="true"><i class="h-2.5 w-2.5 rounded-full bg-edge"></i><i class="h-2.5 w-2.5 rounded-full bg-edge"></i><i class="h-2.5 w-2.5 rounded-full bg-neon"></i><span class="ml-3 text-mute">firmware.map</span></div>
-      <div class="space-y-2">
-        <div class="seg flex items-center justify-between rounded border border-neon/60 bg-neon/10 px-3 py-3" style="animation-delay:.1s"><span class="text-neon">.text</span><span class="text-mute">0x0800_0000</span></div>
-        <div class="seg flex items-center justify-between rounded border border-ice/60 bg-ice/10 px-3 py-2.5" style="animation-delay:.25s"><span class="text-ice">.rodata</span><span class="text-mute">0x0802_0000</span></div>
-        <div class="seg flex items-center justify-between rounded border border-edge bg-white/5 px-3 py-2" style="animation-delay:.4s"><span>.data</span><span class="text-mute">0x2000_0000</span></div>
-        <div class="seg flex items-center justify-between rounded border border-edge bg-white/5 px-3 py-4" style="animation-delay:.55s"><span>.bss</span><span class="text-mute">0x2000_0400</span></div>
-        <div class="seg flex items-center justify-between rounded border border-dashed border-edge px-3 py-5 text-mute" style="animation-delay:.7s"><span>heap ↓ &nbsp; ↑ stack</span><span>0x2002_0000</span></div>
-      </div>
-      <p class="cursor mt-5 text-slate-300">boot: tüm çevre birimleri hazır</p>
-    </div>
-  </div>
-</section>
-
-<!-- YETKİNLİKLER -->
-<section id="yetkinlikler" class="mx-auto max-w-6xl px-5 py-20">
-  <h2 class="text-3xl font-bold text-white">Teknik yetkinlikler</h2>
-  <p class="mt-2 text-mute">Mikrodenetleyiciden yapay zeka modeline, katman katman.</p>
-  <div id="skills" class="mt-10 grid gap-5 md:grid-cols-2"></div>
-</section>
-
-<!-- PROJELER -->
-<section id="projeler" class="border-y border-edge/70 bg-panel/40">
-  <div class="mx-auto max-w-6xl px-5 py-20">
-    <div role="tablist" aria-label="Projeler ve sertifikalar" class="flex gap-1 border-b border-edge">
-      <button role="tab" id="tab-projeler" aria-controls="panel-projeler" aria-selected="true" class="-mb-px border-b-2 border-transparent px-5 py-3 text-lg font-semibold text-mute hover:text-white">Projeler</button>
-      <button role="tab" id="tab-sertifikalar" aria-controls="panel-sertifikalar" aria-selected="false" tabindex="-1" class="-mb-px border-b-2 border-transparent px-5 py-3 text-lg font-semibold text-mute hover:text-white">Sertifikalar</button>
-    </div>
-    <div id="panel-projeler" role="tabpanel" aria-labelledby="tab-projeler">
-    <p class="mt-8 text-mute">Savunma, görüntü işleme ve yazılım mimarisi alanında geliştirdiklerim.</p>
-    <div id="projects" class="mt-10 grid gap-5 lg:grid-cols-2"></div>
-
-    <h3 class="mt-14 text-xl font-semibold text-white">Ek projeler ve modüller</h3>
-    <p class="mt-1 text-sm text-mute">Daha fazlası <a class="text-neon underline underline-offset-4" href="https://github.com/cyberperfo" target="_blank" rel="noopener">GitHub profilimde</a>.</p>
-    <div id="extras" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
-    </div>
-    <div id="panel-sertifikalar" role="tabpanel" aria-labelledby="tab-sertifikalar" hidden>
-      <p class="mt-8 text-mute">Tamamladığım eğitimler. Dosyalar <code class="font-mono text-sm text-ice">certs/</code> klasöründen açılır.</p>
-      <div id="certs" class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
-    </div>
-  </div>
-</section>
-
-<!-- LİDERLİK -->
-<section id="liderlik" class="mx-auto max-w-6xl px-5 py-20">
-  <h2 class="text-3xl font-bold text-white">Liderlik &amp; topluluk deneyimleri</h2>
-  <div id="lead" class="mt-10 grid gap-5 md:grid-cols-2"></div>
-</section>
-
-<!-- İLETİŞİM -->
-<section id="iletisim" class="border-t border-edge/70 bg-panel/40">
+<footer id="contact" class="border-t border-edge/70 bg-panel/40">
   <div class="mx-auto max-w-6xl px-5 py-20">
     <h2 class="text-3xl font-bold text-white">İletişim</h2>
     <p class="mt-2 max-w-lg text-mute">Gömülü sistemler, Edge AI veya takım çalışması için yazabilirsiniz.</p>
@@ -122,55 +52,76 @@ tailwind.config = {
       <a class="card block rounded-lg border border-edge bg-ink p-5" href="mailto:yusuf.sayilgan@outlook.com"><dt class="text-sm text-mute">E-posta</dt><dd class="mt-1 break-all font-mono text-sm text-neon">yusuf.sayilgan@outlook.com</dd></a>
       <a class="card block rounded-lg border border-edge bg-ink p-5" href="https://github.com/cyberperfo" target="_blank" rel="noopener"><dt class="text-sm text-mute">GitHub</dt><dd class="mt-1 font-mono text-sm text-neon">github.com/cyberperfo</dd></a>
       <a class="card block rounded-lg border border-edge bg-ink p-5" href="https://www.linkedin.com/in/yusuf-say%C4%B1lgan-718153314" target="_blank" rel="noopener"><dt class="text-sm text-mute">LinkedIn</dt><dd class="mt-1 break-all font-mono text-sm text-neon">linkedin.com/in/yusuf-sayılgan-718153314</dd></a>
-      <div class="rounded-lg border border-edge bg-ink p-5"><dt class="text-sm text-mute">Konum</dt><dd class="mt-1 font-mono text-sm text-slate-200">Pendik / İstanbul</dd></div>
+      <div class="rounded-lg border border-edge bg-ink p-5"><dt class="text-sm text-mute">Konum</dt><dd class="mt-1 font-mono text-sm">Pendik / İstanbul</dd></div>
     </dl>
+    <p class="mt-14 text-center font-mono text-xs text-mute">© <span id="yr"></span> Yusuf Sayılgan</p>
   </div>
-</section>
-</main>
-
-<footer class="border-t border-edge/70 px-5 py-6 text-center font-mono text-xs text-mute">© <span id="yr"></span> Yusuf Sayılgan</footer>
+</footer>
 
 <script>
-/* ---------- VERİ ---------- */
+/* ================= VERİ ================= */
 const skills = [
-  { title: 'Programlama Dilleri', color: 'neon', items: ['C++', 'Python', 'Java', 'JavaScript', 'SQL'] },
-  { title: 'Gömülü Sistemler / MCU', color: 'ice', items: ['MCU Peripherals', 'Interrupts', 'Start-up Codes', 'Embedded Driver Development', 'Multi-threading', 'Memory Segmentation'] },
-  { title: 'Yapay Zeka / Görüntü İşleme', color: 'neon', items: ['PyTorch', 'TensorFlow', 'OpenCV', 'Scikit-learn', 'NumPy', 'Pandas', 'ResNet', 'DQN', 'Kalman Filtresi', 'KNN'] },
-  { title: 'Yazılım / Veritabanı', color: 'ice', items: ['OOP', 'Veri Yapıları ve Algoritmalar', 'Qt6', 'MERN Stack', 'REST API', 'Mikroservis', 'SQL (Normalizasyon, Sorgu Optimizasyonu)', 'HTML', 'CSS'] }
+  { title: 'Programlama Dilleri', color: 'neon', items: ['C++', 'Python', 'Java', 'JavaScript', 'SQL', 'Assembly (x86)'] },
+  { title: 'Gömülü Sistemler / MCU', color: 'ice', items: ['MCU Peripherals', 'Interrupts', 'Start-up Codes', 'Embedded Driver Development', 'Multi-threading', 'Memory Segmentation', 'Concurrency', 'Race Condition & Lock Mechanisms', 'Futex', 'Ring-Buffer', 'Paging'] },
+  { title: 'Yapay Zeka / Görüntü İşleme', color: 'neon', items: ['PyTorch', 'TensorFlow', 'OpenCV', 'Scikit-learn', 'NumPy', 'Pandas', 'YOLOv8', 'ResNet', 'DQN', 'Kalman Filtresi', 'KNN', 'MediaPipe', 'U-Net', 'VGGNet', 'BLIP'] },
+  { title: 'Yazılım / Veritabanı', color: 'ice', items: ['OOP', 'Veri Yapıları ve Algoritmalar', 'Qt6', 'MERN Stack', 'Next.js', 'TypeScript', 'Supabase (Auth, PostgreSQL, RLS)', 'REST API', 'Mikroservis', 'SQL (3NF Normalizasyon, PL/SQL Paketleri, Triggers, Prosedürler)'] }
 ];
 
 const projects = [
-  { name: 'LAOM 2.0', sub: 'Lazer Angajman ve Optimizasyon Modülü',
-    desc: 'Hedef tespiti ve takibi için geliştirilen masaüstü modül. Görüntü işleme hattı, hedef sınıflandırma ve hareket tahminini tek bir arayüzde birleştirir.',
-    arch: 'Qt6 arayüz katmanı → OpenCV görüntü işleme → KNN ile sınıflandırma → Kalman Filtresi ile hedef takibi ve tahmini.',
+  { slug: 'ani-kod', name: 'Anı Sayfası ve QR Plaket Platformu', sub: 'Anı Kod', featured: true,
+    desc: 'Kullanıcıların hatıralarını saklayabildiği, QR plaket siparişi verebildiği Apple/Vercel tarzı minimalist bir full-stack ekosistem.',
+    points: ['Kullanıcılar hatıralarını kişisel anı sayfalarında saklar.', 'QR plaket siparişi doğrudan platform üzerinden verilir.', 'Kimlik doğrulama ve veri erişimi Supabase Auth ile PostgreSQL RLS üzerinden yönetilir.', 'Next.js App Router ve TypeScript ile geliştirilmiş, Tailwind CSS ile şekillendirilmiş sade bir arayüz.'],
+    tech: ['Next.js (App Router)', 'TypeScript', 'Supabase (Auth, PostgreSQL, RLS)', 'Tailwind CSS'],
+    links: [['GitHub', 'https://github.com/cyberperfo/An--Kod'], ['Canlı demo', 'https://an-kod.vercel.app']] },
+  { slug: 'isletim-sistemi', name: 'İşletim Sistemi Mimarisi Pratikleri', sub: 'operation-system_instructiondocuments',
+    desc: 'Eşzamanlılık, kilit mekanizmaları ve bellek yönetimini düşük seviyede inceleyen uygulamalı çalışmalar.',
+    points: ['C11 atomics ve x86 assembly lock/xchg yönergeleriyle düşük seviyeli senkronizasyon.', 'Futex (FUTEX_WAIT/WAKE) ile bekletme ve uyandırma mekanizması.', 'POSIX semaphorlarıyla thread-safe Producer-Consumer ring-buffer.', 'x86-64 ve ARM Cortex-M bellek yönetimi simülasyonları.'],
+    tech: ['C11 Atomics', 'x86 Assembly', 'Futex', 'POSIX Semaphores', 'Ring-Buffer', 'ARM Cortex-M'],
+    links: [['GitHub', 'https://github.com/cyberperfo/operation-system_instructiondocumentes']] },
+  { slug: 'laom', name: 'LAOM 3.0 / LAOM 2.0', sub: 'Lazer Angajman ve Optimizasyon Modülü', featured: true,
+    desc: 'Yüksek Enerjili Lazer (YEL) sistemlerinde stabil kilitlenme, gürültü eleme ve imha süresi (TTK) minimizasyonu sağlayan yapay zeka destekli angajman aracı.',
+    points: ['YEL sistemlerinde hedefe stabil kilitlenme.', 'Kalman Filtresi ve KNN ile gürültü eleme ve hedef takibi.', 'İmha süresinin (TTK) en aza indirilmesi.', 'C++ ve Qt6 ile geliştirilmiş, OpenCV tabanlı görüntü işleme hattı.'],
     tech: ['C++', 'Qt6', 'OpenCV', 'KNN', 'Kalman Filtresi'],
-    links: [['GitHub', 'https://github.com/cyberperfo/LAOM_2.0']] },
-  { name: 'LAOM 3.0', sub: 'Lazer Angajman ve Optimizasyon Modülü, yeni sürüm',
-    desc: 'LAOM serisinin 2.0 sürümünün devamı olarak geliştirilen yeni nesil modül.',
-    arch: '', tech: [],
-    links: [['GitHub', 'https://github.com/cyberperfo/LAOM_3.0']] },
-  { name: 'Stratos', sub: 'AI Destekli Otonom Savunma Sanayii İstihbarat Bülteni',
-    desc: 'Savunma sanayii haberlerini toplayıp yapay zeka ile analiz eden ve otomatik olarak bülten üreten istihbarat sistemi.',
-    arch: 'Python tabanlı ajan servisi, Google Gemini LLM ile analiz; MERN arayüzü ve REST API ile servisler arası mikroservis iletişimi.',
+    links: [['LAOM 3.0', 'https://github.com/cyberperfo/LAOM_3.0'], ['LAOM 2.0', 'https://github.com/cyberperfo/LAOM_2.0']] },
+  { slug: 'stratos', name: 'Stratos & Defense Monitor', sub: 'AI Destekli Otonom Savunma Sanayii İstihbarat Bülteni', featured: true,
+    desc: 'Küresel savunma verilerini tarayıp stratejik analiz yapan tam otonom platform.',
+    points: ['Küresel savunma sanayii verilerini otomatik olarak toplar.', 'Google Gemini LLM ile stratejik analiz ve bülten üretimi.', 'MERN Stack arayüzü ile REST API ve mikroservis mimarisi.'],
     tech: ['Python', 'MERN Stack', 'Google Gemini LLM', 'REST API', 'Mikroservis'],
-    links: [['GitHub', 'https://github.com/cyberperfo/stratos-agent']] },
-  { name: 'Derin Öğrenme ve Makine Öğrenmesi Uygulamaları', sub: 'Görüntü işleme ve pekiştirmeli öğrenme',
-    desc: 'Derin öğrenme modelleri ve klasik makine öğrenmesi yöntemleri üzerine uygulamalı çalışmalar; görüntü sınıflandırma ve pekiştirmeli öğrenme deneyleri.',
-    arch: 'PyTorch ile ResNet tabanlı görüntü sınıflandırma, DQN ile pekiştirmeli öğrenme, Scikit-learn ile klasik modeller.',
-    tech: ['Python', 'PyTorch', 'ResNet', 'DQN', 'Scikit-learn'],
+    links: [['Stratos', 'https://github.com/cyberperfo/stratos-agent'], ['Defense Monitor', 'https://github.com/cyberperfo/defense-monitor']] },
+  { slug: 'computer-vision', name: 'Görüntü İşleme ve Computer Vision Mimarileri', sub: 'Derin öğrenme uygulamaları',
+    desc: 'Gerçek zamanlı nesne tespiti, tıbbi segmentasyon ve iskelet analizi üzerine uygulamalar.',
+    points: ['YOLOv8 ile gerçek zamanlı nesne tespiti.', 'U-Net ile tıbbi görüntü segmentasyonu.', 'MediaPipe ile iskelet (pose estimation) analizi.', 'VGGNet ve BLIP mimarileri üzerine çalışmalar.'],
+    tech: ['Python', 'PyTorch', 'YOLOv8', 'U-Net', 'VGGNet', 'BLIP', 'MediaPipe'],
     links: [['Derin Öğrenme', 'https://github.com/cyberperfo/deep-learning'], ['Görüntü İşleme', 'https://github.com/cyberperfo/deep-learning-ile-goruntu-isleme']] },
-  { name: 'COVID-19 Veri Panosu', sub: 'REST API tabanlı veri paneli',
-    desc: 'Genel bir REST API üzerinden COVID-19 verilerini çekip işleyen ve kullanıcıya sunan Java uygulaması.',
-    arch: 'Nesne yönelimli tasarım; Java 11 HTTPClient ile API çağrıları, JSON ayrıştırma ve veri modeli sınıfları.',
+  { slug: 'kutuphane', name: 'Ölçeklenebilir Kütüphane Yönetim Sistemi', sub: 'İlişkisel veritabanı mimarisi',
+    desc: '3NF uyumlu 12 tabloluk ilişkisel veritabanı mimarisi üzerine kurulu yönetim sistemi.',
+    points: ['3NF uyumlu, 12 tablolu ilişkisel şema.', 'PL/SQL paketleri ve CRUD operasyonları.', 'Otomatik loglama için tetikleyiciler (Triggers).'],
+    tech: ['SQL', 'PL/SQL', '3NF Normalizasyon', 'Triggers'],
+    links: [['GitHub', 'https://github.com/cyberperfo/HastaneVeriTaban-Projesi']] },
+  { slug: 'sui-move', name: 'Sui Blockchain / Move Challenge Projesi', sub: 'Akıllı sözleşme geliştirme',
+    desc: 'Sui ağı için Move akıllı sözleşmeleri ve TypeScript frontend entegrasyonu.',
+    points: ['Move dilinde akıllı sözleşme geliştirme.', 'Sui Move build ve test süreçleri.', 'TypeScript ile frontend entegrasyonu.'],
+    tech: ['Move', 'Sui', 'TypeScript'],
+    links: [['GitHub', 'https://github.com/cyberperfo/Randevu-Sistemi2.0']] },
+  { slug: 'covid-panosu', name: 'COVID-19 Veri Panosu', sub: 'REST API tabanlı veri paneli',
+    desc: 'Gerçek zamanlı pandemi verisi işleyen modüler konsol/veri panosu uygulaması.',
+    points: ['Java 11 HTTPClient ile REST API çağrıları.', 'JSON verisinin ayrıştırılması ve işlenmesi.', 'Nesne yönelimli, modüler sınıf yapısı.'],
     tech: ['Java 11', 'HTTPClient', 'REST API', 'JSON', 'OOP'],
     links: [['GitHub', 'https://github.com/cyberperfo/Covid-Dashboard']] }
 ];
 
-const extras = [
-  ['Hastane Veritabanı Projesi', 'Veritabanı tasarımı', 'https://github.com/cyberperfo/HastaneVeriTaban-Projesi'],
-  ['Defense Monitor', 'Savunma odaklı izleme', 'https://github.com/cyberperfo/defense-monitor'],
-  ['Randevu Sistemi 2.0', 'Randevu yönetimi', 'https://github.com/cyberperfo/Randevu-Sistemi2.0'],
-  ['Yusuf-Sui-2.0', 'Ek modül', 'https://github.com/cyberperfo/Yusuf-Sui-2.0']
+const certs = [
+  { title: 'Mastering Microcontroller and Embedded Driver Development', org: 'Udemy', date: 'Eyl 2026', id: 'UC-748a031c-52f9-46a1-a58a-4c5eaeec68dd', file: 'embedded-driver-udemy.png', img: 1 },
+  { title: 'Görüntü İşleme Pratikleri ve Derin Öğrenme ile', org: 'BTK Akademi', date: 'Ara 2025 - Ara 2035', id: '9XrtzLlNNk', file: 'goruntu-isleme-derin-ogrenme-btk.pdf' },
+  { title: 'HTML ile Web Geliştirme', org: 'BTK Akademi', date: 'Ara 2025 - Ara 2035', id: 'pKmhq7MygE', file: 'html-web-gelistirme-btk.jpg', img: 1 },
+  { title: 'C++ ile Programlamaya Giriş', org: 'BTK Akademi', date: 'Eki 2025 - Eki 2035', id: 'BozfxDyae7', file: 'cpp-programlamaya-giris-btk.pdf' },
+  { title: 'PyTorch ile Derin Öğrenme Algoritmaları', org: 'BTK Akademi', date: 'Ara 2025 - Ara 2035', id: 'BozfxGyl8d', file: 'pytorch-derin-ogrenme-btk.jpg', img: 1 },
+  { title: 'Savunma Sanayii 101 Eğitim Sertifikası', org: 'Savunma Sanayii Akademi', date: 'Haz 2025', id: 'UN_041477105104205649', file: 'savunma-sanayii-101.jpg' },
+  { title: 'Python ile Makine Öğrenmesi', org: 'BTK Akademi', date: 'Nis 2025 - Nis 2035', id: 'pKmhK6gLL6', file: 'python-makine-ogrenmesi-btk.jpg', img: 1 },
+  { title: 'Python Programlama Dili', org: 'BTK Akademi', date: 'Nis 2025 - Nis 2035', id: 'lK1h7omj8', file: 'python-programlama-btk.jpg', img: 1 },
+  { title: 'Certified Ethical Hacker', org: 'Udemy', date: 'Nis 2025 - Nis 2035', id: 'UC-e79fa7a8-6041-49e7-8958-5fdcc22bb5cb', file: 'certified-ethical-hacker-udemy.pdf' },
+  { title: 'Java Programming Masterclass', org: 'Udemy', date: 'Şub 2025 - Şub 2035', id: 'UC-850779ad-b13a-44d5-8e5d-b8742046260b', file: 'java-masterclass-udemy.png', img: 1 },
+  { title: 'C Programming Fundamentals', org: 'BTK Akademi', date: 'Mar 2025 - Mar 2035', id: 'pKmhKWZNoa', file: 'c-programlama-btk.jpg', img: 1 }
 ];
 
 const lead = [
@@ -178,9 +129,29 @@ const lead = [
   { role: 'Yönetim Kurulu Başkanı', org: 'Medeniyet Blockchain Kulübü', text: 'Kulübün yönetimini yürütüyor; blokzincir teknolojileri üzerine topluluk etkinlikleri ve eğitimleri organize ediyor.' }
 ];
 
-/* ---------- BİLEŞENLER ---------- */
+/* ================= BİLEŞENLER ================= */
 const tag = (t, c = 'neon') => `<span class="rounded border border-edge bg-ink px-2.5 py-1 font-mono text-xs ${c === 'neon' ? 'text-neon' : 'text-ice'}">${t}</span>`;
 const chip = t => `<span class="rounded border border-edge bg-white/5 px-2 py-0.5 font-mono text-xs text-slate-300">${t}</span>`;
+const btn = 'rounded-md border border-edge px-4 py-2 text-sm font-medium text-white hover:border-neon hover:text-neon';
+const wrap = (inner, cls = '') => `<section class="mx-auto max-w-6xl px-5 py-16 ${cls}">${inner}</section>`;
+
+const Hero = () => `
+  <section class="relative overflow-hidden">
+    <div class="grid-bg absolute inset-0" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-6xl px-5 py-24 md:py-32">
+      <p class="font-mono text-sm text-ice">Bilgisayar Mühendisliği Öğrencisi &amp; Edge AI Engineer</p>
+      <h1 class="mt-4 text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-8xl">Yusuf<br>Sayılgan</h1>
+      <p class="mt-8 max-w-2xl text-lg leading-relaxed text-slate-300">Düşük seviyeli sistemler, gömülü yazılım mimarileri ve yapay zeka uygulamaları üzerine çalışan; milli teknoloji hamlesi vizyonuyla hareket eden bir bilgisayar mühendisliği 3. sınıf öğrencisi. <span class="text-white">Two Red Eyes</span> yazılım ekibinin kurucu ortağı.</p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="#/projects" class="rounded-md bg-neon px-6 py-3 text-sm font-semibold text-ink hover:brightness-110">Projeleri incele</a>
+        <a href="#/certificates" class="rounded-md border border-edge px-6 py-3 text-sm font-semibold text-white hover:border-neon">Sertifikalar</a>
+        <a data-scroll="contact" href="#/" class="rounded-md border border-edge px-6 py-3 text-sm font-semibold text-white hover:border-neon">İletişime geç</a>
+      </div>
+      <dl class="mt-16 grid max-w-md grid-cols-3 gap-6 border-t border-edge pt-8">
+        ${[[projects.length, 'Proje'], [certs.length, 'Sertifika'], [lead.length, 'Liderlik rolü']].map(([n, l]) => `<div><dd class="text-3xl font-bold text-white">${n}</dd><dt class="mt-1 text-sm text-mute">${l}</dt></div>`).join('')}
+      </dl>
+    </div>
+  </section>`;
 
 const SkillCard = s => `
   <article class="card rounded-lg border border-edge bg-panel p-6">
@@ -188,52 +159,64 @@ const SkillCard = s => `
     <div class="mt-4 flex flex-wrap gap-2">${s.items.map(i => tag(i, s.color)).join('')}</div>
   </article>`;
 
-const ProjectCard = p => `
-  <article class="card flex flex-col rounded-lg border border-edge bg-ink p-6">
-    <h3 class="text-xl font-semibold text-white">${p.name}</h3>
-    <p class="mt-1 text-sm text-ice">${p.sub}</p>
-    <p class="mt-4 text-sm leading-relaxed text-slate-300">${p.desc}</p>
-    ${p.arch ? `<p class="mt-3 border-l-2 border-neon/60 pl-3 text-sm leading-relaxed text-mute"><span class="text-slate-200">Mimari:</span> ${p.arch}</p>` : ''}
-    ${p.tech.length ? `<div class="mt-4 flex flex-wrap gap-2">${p.tech.map(chip).join('')}</div>` : ''}
-    <div class="mt-auto flex flex-wrap gap-3 pt-6">
-      ${p.links.map(([l, u]) => `<a href="${u}" target="_blank" rel="noopener" class="rounded-md border border-edge px-4 py-2 text-sm font-medium text-white hover:border-neon hover:text-neon">${p.links.length > 1 ? l : 'GitHub\'da incele'}</a>`).join('')}
-    </div>
-  </article>`;
+const Skills = () => wrap(`
+  <h2 class="text-3xl font-bold text-white">Teknik yetkinlikler</h2>
+  <p class="mt-2 text-mute">Mikrodenetleyiciden yapay zeka modeline, katman katman.</p>
+  <div class="mt-10 grid gap-5 md:grid-cols-2">${skills.map(SkillCard).join('')}</div>`);
 
-const ExtraCard = ([n, d, u]) => `
-  <a href="${u}" target="_blank" rel="noopener" class="card block rounded-lg border border-edge bg-ink p-5">
-    <h4 class="font-semibold text-white">${n}</h4>
-    <p class="mt-1 text-sm text-mute">${d}</p>
-    <p class="mt-4 font-mono text-xs text-neon">github.com/cyberperfo</p>
+const ProjectCard = p => `
+  <a href="#/projects/${p.slug}" class="card group flex flex-col rounded-lg border border-edge bg-ink p-6">
+    <p class="font-mono text-xs text-ice">${p.sub}</p>
+    <h3 class="mt-2 text-xl font-semibold text-white">${p.name}</h3>
+    <p class="mt-3 text-sm leading-relaxed text-slate-300">${p.desc}</p>
+    <div class="mt-4 flex flex-wrap gap-2">${p.tech.slice(0, 4).map(chip).join('')}${p.tech.length > 4 ? chip('+' + (p.tech.length - 4)) : ''}</div>
+    <span class="mt-auto pt-6 text-sm font-medium text-neon">Detayları gör <span class="inline-block transition group-hover:translate-x-1">→</span></span>
   </a>`;
 
-const LeadCard = l => `
-  <article class="card rounded-lg border border-edge bg-panel p-6">
-    <p class="font-mono text-sm text-neon">${l.role}</p>
-    <h3 class="mt-1 text-lg font-semibold text-white">${l.org}</h3>
-    <p class="mt-3 text-sm leading-relaxed text-slate-300">${l.text}</p>
-  </article>`;
+const Lead = () => wrap(`
+  <h2 class="text-3xl font-bold text-white">Liderlik &amp; topluluk deneyimleri</h2>
+  <div class="mt-10 grid gap-5 md:grid-cols-2">${lead.map(l => `
+    <article class="card rounded-lg border border-edge bg-panel p-6">
+      <p class="font-mono text-sm text-neon">${l.role}</p>
+      <h3 class="mt-1 text-lg font-semibold text-white">${l.org}</h3>
+      <p class="mt-3 text-sm leading-relaxed text-slate-300">${l.text}</p>
+    </article>`).join('')}</div>`);
 
-const render = (id, arr, fn) => document.getElementById(id).innerHTML = arr.map(fn).join('');
-render('skills', skills, SkillCard);
-render('projects', projects, ProjectCard);
-render('extras', extras, ExtraCard);
-render('lead', lead, LeadCard);
+const Featured = () => wrap(`
+  <div class="flex items-end justify-between gap-4">
+    <h2 class="text-3xl font-bold text-white">Öne çıkan projeler</h2>
+    <a href="#/projects" class="text-sm font-medium text-neon">Tüm projeler →</a>
+  </div>
+  <div class="mt-10 grid gap-5 lg:grid-cols-3">${projects.filter(p => p.featured).map(ProjectCard).join('')}</div>`, 'border-t border-edge/70');
 
-/* Sertifikalar: dosya adları certs/ klasörüne göre. Eksik dosyalar (.pdf) için kendi dosyanı aynı adla ekle. */
-const certs = [
-  { title: 'Mastering Microcontroller and Embedded Driver Development', org: 'Udemy', date: 'Eyl 2026', id: 'UC-748a031c-52f9-46a1-a58a-4c5eaeec68dd', file: 'embedded-driver-udemy.png', img: true },
-  { title: 'Görüntü İşleme Pratikleri ve Derin Öğrenme ile', org: 'BTK Akademi', date: 'Ara 2025 - Ara 2035', id: '9XrtzLlNNk', file: 'goruntu-isleme-derin-ogrenme-btk.pdf' },
-  { title: 'HTML ile Web Geliştirme', org: 'BTK Akademi', date: 'Ara 2025 - Ara 2035', id: 'pKmhq7MygE', file: 'html-web-gelistirme-btk.jpg', img: true },
-  { title: 'C++ ile Programlamaya Giriş', org: 'BTK Akademi', date: 'Eki 2025 - Eki 2035', id: 'BozfxDyae7', file: 'cpp-programlamaya-giris-btk.pdf' },
-  { title: 'PyTorch ile Derin Öğrenme Algoritmaları', org: 'BTK Akademi', date: 'Ara 2025 - Ara 2035', id: 'BozfxGyl8d', file: 'pytorch-derin-ogrenme-btk.jpg', img: true },
-  { title: 'Savunma Sanayii 101 Eğitim Sertifikası', org: 'Savunma Sanayii Akademi', date: 'Haz 2025', id: 'UN_041477105104205649', file: 'savunma-sanayii-101.jpg' },
-  { title: 'Python ile Makine Öğrenmesi', org: 'BTK Akademi', date: 'Nis 2025 - Nis 2035', id: 'pKmhK6gLL6', file: 'python-makine-ogrenmesi-btk.jpg', img: true },
-  { title: 'Python Programlama Dili', org: 'BTK Akademi', date: 'Nis 2025 - Nis 2035', id: 'lK1h7omj8', file: 'python-programlama-btk.jpg', img: true },
-  { title: 'Certified Ethical Hacker', org: 'Udemy', date: 'Nis 2025 - Nis 2035', id: 'UC-e79fa7a8-6041-49e7-8958-5fdcc22bb5cb', file: 'certified-ethical-hacker-udemy.pdf' },
-  { title: 'Java Programming Masterclass', org: 'Udemy', date: 'Şub 2025 - Şub 2035', id: 'UC-850779ad-b13a-44d5-8e5d-b8742046260b', file: 'java-masterclass-udemy.png', img: true },
-  { title: 'C Programming Fundamentals', org: 'BTK Akademi', date: 'Mar 2025 - Mar 2035', id: 'pKmhKWZNoa', file: 'c-programlama-btk.jpg', img: true }
-];
+const Home = () => Hero() + Skills() + Featured() + Lead();
+
+const ProjectsPage = () => wrap(`
+  <h1 class="text-4xl font-bold text-white">Projeler</h1>
+  <p class="mt-2 max-w-xl text-mute">Savunma, gömülü sistemler, görüntü işleme ve full-stack alanlarında geliştirdiklerim. Detay için karta tıkla.</p>
+  <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">${projects.map(ProjectCard).join('')}</div>
+  <a href="https://github.com/cyberperfo/Yusuf-Sui-2.0" target="_blank" rel="noopener" class="card mt-5 flex items-center justify-between rounded-lg border border-edge bg-panel p-5">
+    <span><span class="font-semibold text-white">Diğer çalışmalar: Yusuf-Sui-2.0</span><span class="mt-1 block text-sm text-mute">GitHub'da incele</span></span><span class="text-neon">↗</span>
+  </a>`);
+
+const ProjectPage = p => {
+  const i = projects.indexOf(p), next = projects[(i + 1) % projects.length];
+  return wrap(`
+  <a href="#/projects" class="text-sm text-mute hover:text-white">← Tüm projeler</a>
+  <p class="mt-8 font-mono text-sm text-ice">${p.sub}</p>
+  <h1 class="mt-2 max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl">${p.name}</h1>
+  <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">${p.desc}</p>
+  <div class="mt-8 flex flex-wrap gap-3">${p.links.map(([l, u], k) => `<a href="${u}" target="_blank" rel="noopener" class="${k === 0 ? 'rounded-md bg-neon px-5 py-2.5 text-sm font-semibold text-ink hover:brightness-110' : btn}">${l} ↗</a>`).join('')}</div>
+  <div class="mt-14 grid gap-10 border-t border-edge pt-10 md:grid-cols-[1.4fr_1fr]">
+    <div><h2 class="text-xl font-semibold text-white">Öne çıkanlar</h2>
+      <ul class="mt-5 space-y-3">${p.points.map(t => `<li class="flex gap-3 text-slate-300"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-neon"></span>${t}</li>`).join('')}</ul></div>
+    <div><h2 class="text-xl font-semibold text-white">Teknolojiler</h2>
+      <div class="mt-5 flex flex-wrap gap-2">${p.tech.map(t => tag(t)).join('')}</div></div>
+  </div>
+  <a href="#/projects/${next.slug}" class="card mt-16 flex items-center justify-between rounded-lg border border-edge bg-panel p-5">
+    <span><span class="text-sm text-mute">Sonraki proje</span><span class="mt-1 block font-semibold text-white">${next.name}</span></span><span class="text-neon">→</span>
+  </a>`);
+};
 
 const CertCard = c => `
   <article class="card flex flex-col overflow-hidden rounded-lg border border-edge bg-ink">
@@ -244,43 +227,53 @@ const CertCard = c => `
       <p class="mt-2 text-sm text-mute">${c.date}</p>
       <p class="mt-3 break-all font-mono text-xs text-slate-400"><span class="text-mute">Kimlik:</span> ${c.id}</p>
       <div class="mt-auto flex gap-3 pt-5">
-        <a href="certs/${c.file}" target="_blank" rel="noopener" class="rounded-md border border-edge px-4 py-2 text-sm font-medium text-white hover:border-neon hover:text-neon">Görüntüle</a>
-        <a href="certs/${c.file}" download class="rounded-md border border-edge px-4 py-2 text-sm font-medium text-white hover:border-neon hover:text-neon">İndir</a>
+        <a href="certs/${c.file}" target="_blank" rel="noopener" class="${btn}">Görüntüle</a>
+        <a href="certs/${c.file}" download class="${btn}">İndir</a>
       </div>
     </div>
   </article>`;
-render('certs', certs, CertCard);
 
-/* ---------- ETKİLEŞİM ---------- */
-document.getElementById('yr').textContent = new Date().getFullYear();
+const CertsPage = () => wrap(`
+  <h1 class="text-4xl font-bold text-white">Sertifikalar</h1>
+  <p class="mt-2 max-w-xl text-mute">Tamamladığım eğitimler. Dosyalar <code class="font-mono text-sm text-ice">certs/</code> klasöründen açılır.</p>
+  <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">${certs.map(CertCard).join('')}</div>`);
 
-/* Sekmeler */
-const tabs = [...document.querySelectorAll('[role=tab]')];
-const setTab = n => tabs.forEach(t => {
-  const on = t.id === 'tab-' + n;
-  t.setAttribute('aria-selected', on);
-  t.tabIndex = on ? 0 : -1;
-  document.getElementById('panel-' + t.id.slice(4)).hidden = !on;
-});
-tabs.forEach(t => {
-  t.addEventListener('click', () => setTab(t.id.slice(4)));
-  t.addEventListener('keydown', e => {
-    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-    const o = tabs[(tabs.indexOf(t) + 1) % tabs.length];
-    o.focus(); setTab(o.id.slice(4));
-  });
-});
-document.querySelectorAll('[data-tab]').forEach(a => a.addEventListener('click', () => setTab(a.dataset.tab)));
-setTab(location.hash === '#sertifikalar' ? 'sertifikalar' : 'projeler');
-const btn = document.getElementById('menuBtn'), menu = document.getElementById('menu');
-btn.addEventListener('click', () => {
+/* ================= ROUTER (#/, #/projects, #/projects/slug, #/certificates) ================= */
+const app = document.getElementById('app');
+const BASE = 'Yusuf Sayılgan';
+function route() {
+  const [a = '', b] = location.hash.replace(/^#\/?/, '').split('/');
+  const p = projects.find(x => x.slug === b);
+  let html, title = BASE + ' | Edge AI Engineer';
+  if (a === 'projects' && p) { html = ProjectPage(p); title = `${p.name} | ${BASE}`; }
+  else if (a === 'projects') { html = ProjectsPage(); title = `Projeler | ${BASE}`; }
+  else if (a === 'certificates') { html = CertsPage(); title = `Sertifikalar | ${BASE}`; }
+  else html = Home();
+  app.innerHTML = `<div class="page">${html}</div>`;
+  document.title = title;
+  document.querySelectorAll('[data-nav]').forEach(l => l.toggleAttribute('aria-current', false) || (l.dataset.nav === a && l.setAttribute('aria-current', 'page')));
+  closeMenu();
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+
+/* ================= ETKİLEŞİM ================= */
+const menu = document.getElementById('menu'), menuBtn = document.getElementById('menuBtn');
+function closeMenu() { menu.classList.add('hidden'); menu.classList.remove('flex'); menuBtn.setAttribute('aria-expanded', false); }
+menuBtn.addEventListener('click', () => {
   const open = menu.classList.toggle('hidden') === false;
   menu.classList.toggle('flex', open);
-  btn.setAttribute('aria-expanded', open);
+  menuBtn.setAttribute('aria-expanded', open);
 });
-menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  if (window.innerWidth < 768) { menu.classList.add('hidden'); menu.classList.remove('flex'); btn.setAttribute('aria-expanded', false); }
-}));
+/* "İletişim" bağlantıları: sayfa değiştirmeden alt kısma kaydırır */
+document.addEventListener('click', e => {
+  const s = e.target.closest('[data-scroll]');
+  if (!s) return;
+  e.preventDefault(); closeMenu();
+  document.getElementById(s.dataset.scroll).scrollIntoView({ behavior: 'smooth' });
+});
+document.getElementById('yr').textContent = new Date().getFullYear();
+route();
 </script>
 </body>
 </html>
