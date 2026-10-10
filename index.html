@@ -219,17 +219,15 @@ const ProjectPage = p => {
 };
 
 const CertCard = c => `
-  <article class="card flex flex-col overflow-hidden rounded-lg border border-edge bg-ink">
-    ${c.img ? `<a href="certs/${c.file}" target="_blank" rel="noopener" aria-label="${c.title} sertifikasını görüntüle"><img src="certs/${c.file}" alt="${c.title} sertifikası" loading="lazy" class="aspect-[4/3] w-full border-b border-edge bg-white object-cover object-top"></a>` : ''}
-    <div class="flex flex-1 flex-col p-5">
+  <article class="card flex flex-col justify-between rounded-lg border border-edge bg-ink p-5">
+    <div>
       <p class="font-mono text-xs text-ice">${c.org}</p>
       <h3 class="mt-1 font-semibold leading-snug text-white">${c.title}</h3>
       <p class="mt-2 text-sm text-mute">${c.date}</p>
       <p class="mt-3 break-all font-mono text-xs text-slate-400"><span class="text-mute">Kimlik:</span> ${c.id}</p>
-      <div class="mt-auto flex gap-3 pt-5">
-        <a href="certs/${c.file}" target="_blank" rel="noopener" class="${btn}">Görüntüle</a>
-        <a href="certs/${c.file}" download class="${btn}">İndir</a>
-      </div>
+    </div>
+    <div class="mt-6 pt-4 border-t border-edge/60">
+      <a href="certs/${c.file}" download class="inline-flex items-center justify-center w-full rounded-md bg-neon px-4 py-2 text-sm font-semibold text-ink hover:brightness-110">Sertifikayı İndir</a>
     </div>
   </article>`;
 
